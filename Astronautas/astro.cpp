@@ -73,9 +73,9 @@ int main()
 						listaVoos(voosExistentes);
 						std::cin >> escolha2;
 						escolha2 -= 1;
-						if (voosExistentes[escolha2].getStatus().compare("EmCurso") != 0)
+						if (voosExistentes[escolha2].getStatus().compare("EmCurso") != 0 && voosExistentes[escolha2].getStatus().compare("FinalizadoERROR"))
 						{
-							// Confere se o voo nao esta em curso
+							// Confere se o voo nao esta em curso e NÃO EXPLODIU NOS ARES
 							voosExistentes[escolha2].setPassageiro(AstronautasExistentes[escolha]);
 							// Escolhe o voo da lista e utiliza push_back para colocar o astronauta escolhido no final do vetor
 							// Assentos, presente em todas as classes Foguetes
@@ -306,9 +306,9 @@ int main()
 				{
 					voosExistentes[escolha].setStatusFinalizar();
 					std::cout << "Status: " << voosExistentes[escolha].getStatus() << std::endl;
-					for(int i=0;i<voosExistentes[escolha].getAssentos().size();i++)
+					for(std::size_t i=0;i<voosExistentes[escolha].getAssentos().size();i++)
 					{
-						for(int j=0;j<AstronautasExistentes.size();j++)
+						for(std::size_t j=0;j<AstronautasExistentes.size();j++)
 						{
 							if(voosExistentes[escolha].getAssentos()[i].getCpf().compare(AstronautasExistentes[j].getCpf())==0)
 							{
@@ -318,7 +318,7 @@ int main()
 						}
 					}
 					//Limpar assentos do voo removendo 1 por 1
-					for (int i=0;i<voosExistentes[escolha].getAssentos().size();i++)
+					for (std::size_t i=0;i<voosExistentes[escolha].getAssentos().size();i++)
 					{
 					voosExistentes[escolha].removePassageiro(i);	
 					}
